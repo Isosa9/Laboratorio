@@ -46,7 +46,15 @@ class HomePage extends StatelessWidget {
             builder: (context, appState, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                   1 => const Paragraph('1 person going'),
+        >= 2 => Paragraph('${appState.attendees} people going'),
+        _ => const Paragraph('No one going'),
+      },
                 if (appState.loggedIn) ...[
+                  YesNoSelection(
+          state: appState.attending,
+          onSelection: (attending) => appState.attending = attending,
+        ),
                   const Header('Discussion'),
                   GuestBook(
                     addMessage: (message) =>
